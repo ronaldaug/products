@@ -1,32 +1,32 @@
 <template>
     <div id="products">
-    <vs-row :w="row">
-        <vs-col :w="col" :key="p.productId" v-for="p in products">
-        <vs-card>
-            <template #title>
-                <a :href="p.productAffLink"><h3>{{p.productName}}</h3></a>
-            </template>
-            <template #img>
-                <a :href="p.productAffLink"><img :src="p.productImage" :alt="p.productName"></a>
-            </template>
-            <template #text>
-                <a :href="p.productAffLink"><p>
-                    {{p.productDescription}}
-                </p></a>
-            </template>
-            <template #interactions>
-                <vs-button danger icon>
-                <i class='bx bx-heart'></i>
-                </vs-button>
-                <vs-button class="btn-chat" shadow primary>
-                <span class="span">
-                    {{removeLastComma(p.productCategoriesLabel)}}
-                </span>
-                </vs-button>
-            </template>
-        </vs-card>
-        </vs-col>
-    </vs-row>
+        <div class="c-row">
+            <div class="c-col" v-for="p in products" :key="p.id">
+            <vs-card>
+                <template #title>
+                    <a :href="p.productAffLink"><h3>{{p.productName}}</h3></a>
+                </template>
+                <template #img>
+                    <a :href="p.productAffLink"><img :src="p.productImage" :alt="p.productName"></a>
+                </template>
+                <template #text>
+                    <a :href="p.productAffLink"><p>
+                        {{p.productDescription}}
+                    </p></a>
+                </template>
+                <template #interactions>
+                    <vs-button danger icon>
+                    <i class='bx bx-heart'></i>
+                    </vs-button>
+                    <vs-button class="btn-chat" shadow primary>
+                    <span class="span">
+                        {{removeLastComma(p.productCategoriesLabel)}}
+                    </span>
+                    </vs-button>
+                </template>
+            </vs-card>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -51,18 +51,21 @@ export default {
     },
     mounted(){
         if(process.browser){
-            const ww = window.innerWidth;
-            if(ww < 768){
-                this.col = 4;
-            }
+            setTimeout(()=>{
+                const ww = window.innerWidth;
+                console.log(ww);
+                if(ww < 768){
+                    this.col = 4;
+                }
 
-            if(ww < 578){
-                this.col = 6;
-            }
+                if(ww < 578){
+                    this.col = 6;
+                }
 
-            if(ww < 400){
-                this.col = 1;
-            }
+                if(ww < 400){
+                    this.col = 1;
+                }
+            },1000)
         }
     }
 }

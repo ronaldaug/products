@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <Navbar :categories="categories" />
-    <h3 class="title">Latest Products | page - {{current}}</h3>
+    <h3 v-if="!isLoading" class="title">Latest Products | page - {{current}}</h3>
     <Loader v-if="isLoading" />
     <Products v-if="!isLoading" :products="products" />
     <div class="center">

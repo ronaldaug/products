@@ -1,7 +1,7 @@
 <template>
     <div id="category" class="grid">
     <Navbar :categories="categories" />
-    <h3 class="title">{{catName.toUpperCase() }} | page - {{current}}</h3>
+    <h3 v-if="!isLoading" class="title">{{catName.toUpperCase() }} | page - {{current}}</h3>
     <Loader v-if="isLoading" />
     <Products v-if="!isLoading" :products="products" />
     <div class="center">
